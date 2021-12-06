@@ -1,9 +1,13 @@
 package com.example.demo.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class TestController {
+
+    @Value("${test.myproperty:default}")
+    private  String testProperty;
     /**
      * GET, POST,PUT, DELETE
      */
@@ -17,7 +21,7 @@ public class TestController {
      */
     @RequestMapping("/hallo")
     public String hallo(@RequestParam String id){
-        return "Hallo Welt:"+ id;
+        return "Hallo Welt:"+ id +"\n und MyProperty ist: "+testProperty;
     }
 
     @PostMapping("/hallo/post")
